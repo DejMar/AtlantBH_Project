@@ -1,4 +1,3 @@
-import { blogOptions, careerOptions, serviceOptions } from "../../data/pageLabels";
 
 export class HomePage {
     page: any;
@@ -20,6 +19,11 @@ export class HomePage {
     servicesMenuSelector = 'li#menu-item-1451 > ul.sub-menu > li > a';
     blogMenuSelector = 'li#menu-item-13931 > ul.sub-menu > li > a';
     givingBackMenuSelector = 'li#menu-item-18684 > ul.sub-menu > li > a';
+    servicesMenuLocator = 'li#menu-item-1451';
+    careerMenuLocator = 'li#menu-item-17838';
+    blogMenuLocator = 'li#menu-item-13931';
+    givingBackMenuLocator = 'li#menu-item-18684';
+
     constructor(page: any) {
         this.page = page;
         this.logo = page.locator('#logo');
@@ -34,9 +38,6 @@ export class HomePage {
         this.facebookLink = page.locator('li#social-in-menu a[href="https://www.facebook.com/atlantbh"]');
         this.linkedinLink = page.locator('li#social-in-menu a[href="https://www.linkedin.com/company/1485526"]');
         this.instagramLink = page.locator('li#social-in-menu a[href="https://www.instagram.com/atlantbh/"]');
-
-        this.careerMenu = this.page.locator('li#menu-item-17838 > ul.sub-menu > li > a');
-        this.servicesMenu = this.page.locator('li#menu-item-1451 > ul.sub-menu > li > a');
     }
 
     async navigateToHome() {
@@ -77,6 +78,13 @@ export class HomePage {
 
     async clickInstagramLink() {
         await this.instagramLink.click();
+    }
+
+    async clickSubmenuItem(menuLocator: string, optionText: string) {
+        const servicesMenu = this.page.locator(menuLocator);
+        await servicesMenu.hover();
+        const option = servicesMenu.locator(`ul.sub-menu > li > a:text("${optionText}")`);
+        await option.click();
     }
     
     async checkOptions(menuLocator: string, serviceOptions: string[]) {

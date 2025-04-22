@@ -37,3 +37,9 @@ export const givingBackOptions = {
     scholarships: 'Scholarships'
 };
 
+export const blogPageLabels = {
+    blog: 'Blog',
+    blogDescription: 'Tech-tips and lessons learned.'
+};
+
+
