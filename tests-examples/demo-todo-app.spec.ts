@@ -24,7 +24,7 @@ test.describe('New Todo', () => {
       TODO_ITEMS[0]
     ]);
 
-    // Create 2nd todo.
+    // Create 2nd todo. and test it
     await newTodo.fill(TODO_ITEMS[1]);
     await newTodo.press('Enter');
 
