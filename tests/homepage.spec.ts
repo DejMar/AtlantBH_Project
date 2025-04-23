@@ -89,6 +89,46 @@ test.describe('Checking dropdown menu on Homepage', () => {
   });
 });
 
+test.describe('Navigating to Careers page', () => {
+  let homePage: HomePage;
+
+  test.beforeEach(async ({ page }) => {
+    homePage = new HomePage(page);
+    await page.goto('/');
+  });
+
+  test('should navigate to Jobs page', async ({ page }) => {
+    await homePage.clickSubmenuItem(homePage.careerMenuLocator, careerOptions.jobs);
+    await expect(page).toHaveURL(atlantURLs.jobs);
+  });
+
+  test('should navigate to Internship page', async ({ page }) => {
+    await homePage.clickSubmenuItem(homePage.careerMenuLocator, careerOptions.internship);
+    await expect(page).toHaveURL(atlantURLs.abhInternship);
+  });
+
+  test('should navigate to QAmp page', async ({ page }) => {
+    await homePage.clickSubmenuItem(homePage.careerMenuLocator, careerOptions.qamp);
+    await expect(page).toHaveURL(atlantURLs.qamp);
+  });
+  
+  test('should navigate to Atlanters in Focus page', async ({ page }) => {
+    await homePage.clickSubmenuItem(homePage.careerMenuLocator, careerOptions.atlantersInFocus);
+    await expect(page).toHaveURL(atlantURLs.atlantersInFocus);
+  });
+
+  test('should navigate to Benefits page', async ({ page }) => {  
+    await homePage.clickSubmenuItem(homePage.careerMenuLocator, careerOptions.benefits);
+    await expect(page).toHaveURL(atlantURLs.benefits);
+  });
+
+  test('should navigate to Culture page', async ({ page }) => {
+    await homePage.clickSubmenuItem(homePage.careerMenuLocator, careerOptions.culture);
+    await expect(page).toHaveURL(atlantURLs.culture);
+  });
+
+});
+
 test.describe('Navigating to Blog page', () => {
   let homePage: HomePage;
 

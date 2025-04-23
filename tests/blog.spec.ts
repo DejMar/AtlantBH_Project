@@ -17,5 +17,4 @@ test.describe('Blog Page Tests', () => {
         expect(title).toBe(true);
         expect(subheader).toBe(true);
     });
-
 });
