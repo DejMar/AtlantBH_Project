@@ -2,6 +2,7 @@ import { test, expect } from '@playwright/test';
 import { HomePage } from '../pages/home/homePage';
 import { atlantURLs } from '../data/atlantURL';
 import { careerOptions, serviceOptions, blogOptions, givingBackOptions } from '../data/pageLabels';
+import { SharedSteps } from '../shared/sharedSteps';
 
 test.describe('Homepage Navigation', () => {
   let homePage: HomePage;
@@ -10,6 +11,11 @@ test.describe('Homepage Navigation', () => {
     homePage = new HomePage(page);
     await page.goto('/');
   });
+
+  test.afterEach(async ({ page }, testInfo) => {
+    const sharedSteps = new SharedSteps(page);
+    await sharedSteps.takeScreenshotOnFailure(page, { status: test.info().status ?? '', title: test.info().title });
+});
 
   test('should navigate to Home page', async ({ page }) => {
     await homePage.navigateToHome();
@@ -68,6 +74,11 @@ test.describe('Checking dropdown menu on Homepage', () => {
     await page.goto('/');
   });
 
+  test.afterEach(async ({ page }, testInfo) => {
+    const sharedSteps = new SharedSteps(page);
+    await sharedSteps.takeScreenshotOnFailure(page, { status: test.info().status ?? '', title: test.info().title });
+});
+
   test('should check services options', async ({ page }) => {
     const result = await homePage.checkOptions(homePage.servicesMenuSelector, Object.values(serviceOptions));
     expect(result).toBe(true);
@@ -96,6 +107,11 @@ test.describe('Navigating to Careers page', () => {
     homePage = new HomePage(page);
     await page.goto('/');
   });
+
+  test.afterEach(async ({ page }, testInfo) => {
+    const sharedSteps = new SharedSteps(page);
+    await sharedSteps.takeScreenshotOnFailure(page, { status: test.info().status ?? '', title: test.info().title });
+});
 
   test('should navigate to Jobs page', async ({ page }) => {
     await homePage.clickSubmenuItem(homePage.careerMenuLocator, careerOptions.jobs);
@@ -136,6 +152,11 @@ test.describe('Navigating to Blog page', () => {
     homePage = new HomePage(page);
     await page.goto('/');
   });
+
+  test.afterEach(async ({ page }, testInfo) => {
+    const sharedSteps = new SharedSteps(page);
+    await sharedSteps.takeScreenshotOnFailure(page, { status: test.info().status ?? '', title: test.info().title });
+});
 
   test('should navigate to All Blogs page', async ({ page }) => {
     await homePage.clickSubmenuItem(homePage.blogMenuLocator, blogOptions.allBlogs);
@@ -196,6 +217,11 @@ test.describe('Navigating to Giving Back page', () => {
     await page.goto('/');
   });
 
+  test.afterEach(async ({ page }, testInfo) => {
+    const sharedSteps = new SharedSteps(page);
+    await sharedSteps.takeScreenshotOnFailure(page, { status: test.info().status ?? '', title: test.info().title });
+});
+
   test('should navigate to Community page', async ({ page }) => {
     await homePage.clickSubmenuItem(homePage.givingBackMenuLocator, givingBackOptions.community);
     await expect(page).toHaveURL(atlantURLs.community);
@@ -214,6 +240,11 @@ test.describe('Navigating to Services page', () => {
     homePage = new HomePage(page);
     await page.goto('/');
   });
+
+  test.afterEach(async ({ page }, testInfo) => {
+    const sharedSteps = new SharedSteps(page);
+    await sharedSteps.takeScreenshotOnFailure(page, { status: test.info().status ?? '', title: test.info().title });
+});
 
   test('should navigate to Software Development service', async ({ page }) => {
     await homePage.clickSubmenuItem(homePage.servicesMenuLocator, serviceOptions.softwareDevelopment);
