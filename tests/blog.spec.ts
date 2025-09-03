@@ -20,7 +20,7 @@ test.describe('Blog Page Tests', () => {
 
     });
 
-    test('should display correct header for All Blogs', async ({ page }) => {
+    test.only('should display correct header for All Blogs', async ({ page }) => {
         const title = await testStep.log(blogPage.checkBlogHeaderText(blogPageLabels.blog), 'Checking blog header');
         const subheader = await testStep.log(blogPage.checkBlogSubheaderText(blogPageLabels.blogDescription), 'Checking blog subheader');
         expect(title).toBe(true);
